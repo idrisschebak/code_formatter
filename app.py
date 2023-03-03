@@ -9,7 +9,7 @@ import yaml
 
 st.title("🩺 Code Formatter")
 
-code_input = st.text_area("Enter code here", height=400)
+code_input = st.text_area("Enter your .json, .py or .sql code here", height=400)
 
 try:
     # Try to detect the language of the input code
