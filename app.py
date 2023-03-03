@@ -1,19 +1,28 @@
 import streamlit as st
-import sqlfluff
-import black
+import sqlparse
+import textwrap
+import pygments
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import TerminalFormatter
 
 st.title("Code Formatter")
 
-language = st.selectbox("Select a language", ("SQL", "Python"))
-
 code_input = st.text_area("Enter code here", height=400)
+
+try:
+    # Try to detect the language of the input code
+    lexer = get_lexer_by_name(pygments.lexers.guess_lexer(code_input).name)
+    language = lexer.name
+except pygments.util.ClassNotFound:
+    # Default to SQL if language detection fails
+    language = "SQL"
 
 if st.button("Format"):
     if language == "SQL":
-        formatted_code = sqlfluff.linter.lint_string(code_input)[0].as_string()
-    elif language == "Python":
-        formatted_code = black.format_str(code_input, mode=black.FileMode())
+        formatted_code = sqlparse.format(code_input, reindent=True)
+        formatted_code = textwrap.indent(formatted_code, " " * 4)
     else:
-        formatted_code = ""
+        # Use black to format non-SQL code
+        formatted_code = black.format_str(code_input, mode=black.FileMode())
 
     st.text_area("Formatted code", value=formatted_code, height=400)
