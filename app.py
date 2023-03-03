@@ -4,8 +4,10 @@ import textwrap
 import pygments
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import TerminalFormatter
+import json
+import yaml
 
-st.title("Code Formatter")
+st.title("🩺 Code Formatter")
 
 code_input = st.text_area("Enter code here", height=400)
 
@@ -21,8 +23,14 @@ if st.button("Format"):
     if language == "SQL":
         formatted_code = sqlparse.format(code_input, reindent=True)
         formatted_code = textwrap.indent(formatted_code, " " * 4)
+    elif language == "JSON":
+        formatted_code = json.dumps(json.loads(code_input), indent=4)
+    elif language == "YAML":
+        formatted_code = yaml.dump(yaml.load(code_input), indent=4)
     else:
         # Use black to format non-SQL code
         formatted_code = black.format_str(code_input, mode=black.FileMode())
 
-    st.text_area("Formatted code", value=formatted_code, height=400)
+    # Display the formatted code and detected language
+    st.subheader(f"Formatted {language} code:")
+    st.code(formatted_code, language=language)
