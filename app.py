@@ -1,5 +1,5 @@
 import streamlit as st
-import sqlparse
+import sqlfluff
 import black
 
 st.title("Code Formatter")
@@ -10,7 +10,7 @@ code_input = st.text_area("Enter code here", height=400)
 
 if st.button("Format"):
     if language == "SQL":
-        formatted_code = sqlparse.format(code_input, reindent=True)
+        formatted_code = sqlfluff.linter.lint_string(code_input)[0].as_string()
     elif language == "Python":
         formatted_code = black.format_str(code_input, mode=black.FileMode())
     else:
