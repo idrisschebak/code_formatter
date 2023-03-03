@@ -1,0 +1,60 @@
+# This is a sample .sqlfluff configuration file with classic rules
+
+# Specify the dialect to use for SQL code
+dialect = "ansi"
+
+# Specify the maximum line length for SQL code
+max_line_length = 80
+
+# Specify the keyword casing to use for SQL code
+keyword_case = "upper"
+
+# Specify the rules to use for SQL code formatting
+rules = [
+    "L001",  # Trailing whitespace
+    "L003",  # Unquoted identifiers
+    "L005",  # Functions with no brackets
+    "L014",  # Mixed casing of keywords
+    "L015",  # Uppercase keywords
+    "L016",  # Capitalization of keywords
+    "L019",  # Table aliases not used
+    "L020",  # Table aliases not unique within query
+    "L023",  # Indentation
+    "L024",  # Whitespace around operators
+    "L025",  # Conditional expression indentation
+    "L026",  # Conditional expression spacing
+    "L027",  # Binary expression indentation
+    "L028",  # Binary expression spacing
+    "L034",  # Column expressions should be on a new line
+    "L035",  # Column expressions should be indented
+    "L038",  # Join clauses should be on a new line
+    "L039",  # Join clauses should be indented
+    "L040",  # Join keyword should be on a new line
+    "L041",  # Join keyword should be indented
+    "L042",  # Join condition indentation
+    "L043",  # Join condition spacing
+    "L044",  # Join condition operator placement
+    "L045",  # Join condition bracketing
+    "L046",  # Join condition parentheses spacing
+    "L047",  # Alias placement
+    "L048",  # Alias uniqueness
+    "L049",  # Alias formatting
+    "L050",  # Indentation of subquery
+    "L051",  # Spacing of subquery
+    "L052",  # Subquery parentheses spacing
+    "L053",  # Subquery alias spacing
+    "L054",  # Subquery alias formatting
+    "L055",  # Subquery new line before SELECT
+    "L056",  # Subquery new line after SELECT
+    "L057",  # Subquery indentation
+    "L058",  # Spacing around subquery operator
+    "L059",  # Indentation of CTE
+    "L060",  # Spacing of CTE
+    "L061",  # CTE parentheses spacing
+    "L062",  # CTE alias spacing
+    "L063",  # CTE alias formatting
+    "L064",  # CTE new line before SELECT
+    "L065",  # CTE new line after SELECT
+    "L066",  # CTE indentation
+    "L067",  # Spacing around CTE operator
+]
