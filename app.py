@@ -1,4 +1,5 @@
 import sqlfluff
+import sqlparse
 import streamlit as st
 import black
 
