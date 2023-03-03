@@ -4,12 +4,11 @@ import textwrap
 import pygments
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import TerminalFormatter
-import json
-import yaml
+from yapf.yapflib import yapf_api
 
 st.title("🩺 Code Formatter")
 
-code_input = st.text_area("Enter your .json, .py or .sql code here", height=400)
+code_input = st.text_area("Enter your code here", height=400)
 
 try:
     # Try to detect the language of the input code
@@ -23,13 +22,13 @@ if st.button("Format"):
     if language == "SQL":
         formatted_code = sqlparse.format(code_input, reindent=True)
         formatted_code = textwrap.indent(formatted_code, " " * 4)
-    elif language == "JSON":
-        formatted_code = json.dumps(json.loads(code_input), indent=4)
-    elif language == "YAML":
-        formatted_code = yaml.dump(yaml.load(code_input), indent=4)
+    elif language == "Python":
+        # Format Python code using yapf
+        formatted_code, _ = yapf_api.Format(code_input, style_config="pep8", print_diff=False)
     else:
-        # Use black to format non-SQL code
-        formatted_code = black.format_str(code_input, mode=black.FileMode())
+        # Display an error message if the language is not compatible
+        st.error("Sorry, this coding language is not (yet) compatible")
+        pass
 
     # Display the formatted code and detected language
     st.subheader(f"Formatted {language} code:")
