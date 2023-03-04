@@ -16,9 +16,8 @@ Install the dependencies:
 ```pip install -r requirements.txt```
 
 ### 🛣️ Roadmap:
-- Add automatic code detection
 - Add yaml support
-- Add Json support
+- Add python support
 
 ### 🚀 Usage
 
