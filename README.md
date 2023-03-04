@@ -1,6 +1,6 @@
 # Code Formater
 
-This is a Streamlit app that can format SQL, json & html code.
+This is a Streamlit app that can format SQL, json, html and javascript code.
 
 [![Demo Video](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)
 
