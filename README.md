@@ -1,6 +1,6 @@
 # Code Formater
 
-This is a Streamlit app that can format SQL code. The app uses sqlparse to format SQL code.
+This is a Streamlit app that can format SQL, json & html code.
 
 [![Demo Video](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)
 
@@ -27,11 +27,7 @@ Run the app:
 
 - Enter the code you want to format in the text area.
 
-- Click the "Format" button.
-
-- The app will format the code and display it below the text area.
-
-- If the code is SQL, it will be formatted using sqlparse.
+- press `cmd+enter` to format the code.
 
 ### 💡 Reporting Bugs and Contributing
 If you encounter any bugs or would like to suggest new features, please create an issue on the GitHub repository. Contributions are also welcome! If you would like to contribute to Kitsec, please create a pull request on the GitHub repository.

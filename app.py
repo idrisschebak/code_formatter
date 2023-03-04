@@ -8,11 +8,12 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import TerminalFormatter
 from yapf.yapflib import yapf_api
 import autopep8
+from bs4 import BeautifulSoup
 
 st.title("🩺 Code Formatter")
 
-# Add a message to the app to indicate SQL and JSON compatibility
-st.write("SQL and JSON compatible")
+# Add a message to the app to indicate SQL, JSON and HTML compatibility
+st.write("SQL, JSON and HTML compatible")
 
 code_input = st.text_area("Enter your code here", height=400)
 
@@ -30,21 +31,27 @@ else:
         json.loads(code_input)
         language = "JSON"
     except ValueError:
-        st.error("Unable to detect code language")
-        st.stop()
+        try:
+            soup = BeautifulSoup(code_input, 'html.parser')
+            language = "HTML"
+        except:
+            st.error("Unable to detect code language")
+            st.stop()
 
 # Format the code using the appropriate formatter
 if language == "SQL":
     formatted_code = sqlparse.format(code_input, reindent=True)
     formatted_code = textwrap.indent(formatted_code, " " * 4)
-else:
+elif language == "JSON":
     try:
         parsed_json = json.loads(code_input)
+        formatted_code = json.dumps(parsed_json, indent=4, sort_keys=True)
     except ValueError:
         st.error("Invalid JSON syntax")
         st.stop()
-
-    formatted_code = json.dumps(parsed_json, indent=4, sort_keys=True)
+else: # language == "HTML"
+    soup = BeautifulSoup(code_input, 'html.parser')
+    formatted_code = soup.prettify()
 
 # Display the formatted code and detected language
 st.subheader(f"Formatted {language} code:")
