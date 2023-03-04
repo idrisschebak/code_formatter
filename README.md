@@ -15,6 +15,11 @@ Install the dependencies:
 
 ```pip install -r requirements.txt```
 
+### 🛣️ Roadmap:
+- Add automatic code detection
+- Add yaml support
+- Add Json support
+
 ### 🚀 Usage
 
 Run the app:
@@ -28,9 +33,6 @@ Run the app:
 - The app will format the code and display it below the text area.
 
 - If the code is SQL, it will be formatted using sqlparse.
-- If the code is JSON, it will be formatted using the json library.
-- If the code is YAML, it will be formatted using the yaml library.
-- For any other code, it will be formatted using black.
 
 ### 💡 Reporting Bugs and Contributing
 If you encounter any bugs or would like to suggest new features, please create an issue on the GitHub repository. Contributions are also welcome! If you would like to contribute to Kitsec, please create a pull request on the GitHub repository.
