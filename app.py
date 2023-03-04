@@ -13,6 +13,10 @@ st.title("🩺 Code Formatter")
 
 code_input = st.text_area("Enter your code here", height=400)
 
+# Check if code is entered
+if not code_input:
+    st.stop()
+
 # Detect the language of the code
 sql_keywords_regex = r'^(SELECT|WITH|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER)'
 match = re.search(sql_keywords_regex, code_input.strip(), re.IGNORECASE)
