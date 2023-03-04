@@ -11,6 +11,9 @@ import autopep8
 
 st.title("🩺 Code Formatter")
 
+# Add a message to the app to indicate SQL and JSON compatibility
+st.write("SQL and JSON compatible")
+
 code_input = st.text_area("Enter your code here", height=400)
 
 # Check if code is entered
