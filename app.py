@@ -12,8 +12,8 @@ from bs4 import BeautifulSoup
 
 st.title("🩺 Code Formatter")
 
-# Add a message to the app to indicate SQL, JSON and HTML compatibility
-st.write("SQL, JSON and HTML compatible")
+# Add a message to the app to indicate SQL, JSON, HTML, and JavaScript compatibility
+st.write("SQL, JSON, HTML, and JavaScript compatible")
 
 code_input = st.text_area("Enter your code here", height=400)
 
@@ -33,7 +33,26 @@ else:
     except ValueError:
         try:
             soup = BeautifulSoup(code_input, 'html.parser')
-            language = "HTML"
+            script_tags = soup.find_all('script')
+            if len(script_tags) == 1:
+                script_code = script_tags[0].string.strip()
+                if re.search(r'(\bconst\b|\blet\b|\bvar\b|\bfunction\b|\bif\b|\belse\b|\bfor\b|\bwhile\b|\bswitch\b)', script_code):
+                    language = "JavaScript"
+                    code_input = script_code
+                else:
+                    language = "HTML"
+            else:
+                try:
+                    js_keywords_regex = r'(\bconst\b|\blet\b|\bvar\b|\bfunction\b|\bif\b|\belse\b|\bfor\b|\bwhile\b|\bswitch\b)'
+                    match = re.search(js_keywords_regex, code_input.strip(), re.IGNORECASE)
+                    if match:
+                        language = "JavaScript"
+                    else:
+                        st.error("Unable to detect code language")
+                        st.stop()
+                except:
+                    st.error("Unable to detect code language")
+                    st.stop()
         except:
             st.error("Unable to detect code language")
             st.stop()
@@ -49,9 +68,16 @@ elif language == "JSON":
     except ValueError:
         st.error("Invalid JSON syntax")
         st.stop()
-else: # language == "HTML"
+elif language == "HTML":
     soup = BeautifulSoup(code_input, 'html.parser')
     formatted_code = soup.prettify()
+elif language == "JavaScript":
+    try:
+        formatted_code = autopep8.fix_code(code_input, options={'max_line_length': 120})
+        formatted_code = formatted_code.strip()  # Remove any leading/trailing whitespaces
+    except:
+        st.error("Unable to format JavaScript code")
+        st.stop()
 
 # Display the formatted code and detected language
 st.subheader(f"Formatted {language} code:")
