@@ -1,6 +1,6 @@
 # Code Formater
 
-This is a Streamlit app that can format SQL and JSON code. The app uses sqlparse to format SQL code.
+This is a Streamlit app that can format SQL code. The app uses sqlparse to format SQL code.
 
 [![Demo Video](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)
 
