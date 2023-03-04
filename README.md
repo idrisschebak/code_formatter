@@ -1,4 +1,4 @@
-# Snake Game
+# Code Formater
 This is a Streamlit app that can format SQL, JSON, and YAML code. The app uses sqlparse to format SQL code, json library to format JSON code, and yaml library to format YAML code. For non-SQL code, it uses the black library.
 
 
