@@ -9,7 +9,7 @@ This is a Streamlit app that can format SQL code. The app uses sqlparse to forma
 
 Clone the repository:
 
-```git clone https://github.com/yourusername/code-formatter.git ```
+```git clone https://github.com/idrisschebak/code-formatter.git ```
 
 Install the dependencies:
 
