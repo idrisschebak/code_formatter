@@ -4,3 +4,4 @@ sqlfluff
 streamlit
 autopep8
 yapf
+bs4
