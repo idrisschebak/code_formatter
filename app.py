@@ -42,17 +42,17 @@ else:
                 else:
                     language = "HTML"
             else:
-                try:
-                    js_keywords_regex = r'(\bconst\b|\blet\b|\bvar\b|\bfunction\b|\bif\b|\belse\b|\bfor\b|\bwhile\b|\bswitch\b)'
-                    match = re.search(js_keywords_regex, code_input.strip(), re.IGNORECASE)
-                    if match:
-                        language = "JavaScript"
+                formatted_scripts = []
+                for script in script_tags:
+                    script_code = script.string.strip()
+                    if re.search(r'(\bconst\b|\blet\b|\bvar\b|\bfunction\b|\bif\b|\belse\b|\bfor\b|\bwhile\b|\bswitch\b)', script_code):
+                        formatted_scripts.append(autopep8.fix_code(script_code, options={'max_line_length': 120}).strip())
                     else:
-                        st.error("Unable to detect code language")
-                        st.stop()
-                except:
-                    st.error("Unable to detect code language")
-                    st.stop()
+                        formatted_scripts.append(script_code)
+                formatted_code = str(soup).replace(str(script_tags[0]), formatted_scripts[0])
+                for i in range(1, len(script_tags)):
+                    formatted_code = formatted_code.replace(str(script_tags[i]), formatted_scripts[i])
+                language = "HTML"
         except:
             st.error("Unable to detect code language")
             st.stop()
@@ -69,7 +69,7 @@ elif language == "JSON":
         st.error("Invalid JSON syntax")
         st.stop()
 elif language == "HTML":
-    soup = BeautifulSoup(code_input, 'html.parser')
+    soup = BeautifulSoup(formatted_code, 'html.parser')
     formatted_code = soup.prettify()
 elif language == "JavaScript":
     try:
