@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 st.title("🩺 Code Formatter")
 
 # Add a message to the app to indicate SQL, JSON, HTML, and JavaScript compatibility
-st.write("SQL, JSON, HTML, and JavaScript compatible")
+st.write("SQL, JSON and JavaScript compatible")
 
 code_input = st.text_area("Enter your code here", height=400)
 
