@@ -5,7 +5,7 @@ This is a Streamlit app that can format SQL, json and javascript code.
 [![Demo Video](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)](https://raw.githubusercontent.com/idrisschebak/code_formatter/main/assets/demo.gif)
 
 
-### 📦 Installation
+# 📦 Installation
 
 Clone the repository:
 
@@ -15,11 +15,8 @@ Install the dependencies:
 
 ```pip install -r requirements.txt```
 
-### 🛣️ Roadmap:
-- Add yaml support
-- Add python support
 
-### 🚀 Usage
+# 🪄 Usage
 
 Run the app:
 
@@ -29,8 +26,8 @@ Run the app:
 
 - press `cmd+enter` to format the code.
 
-### 💡 Reporting Bugs and Contributing
+# 💡 Reporting Bugs and Contributing
 If you encounter any bugs or would like to suggest new features, please create an issue on the GitHub repository. Contributions are also welcome! If you would like to contribute to Kitsec, please create a pull request on the GitHub repository.
 
-### 🔖 License
+# 🔖 License
 Kitsec is licensed under the MIT License.
